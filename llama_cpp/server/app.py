@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     model: str = Field(
         description="The path to the model to use for generating completions."
     )
-    model_alias: Optional[str] = Field(
+    alias: Optional[str] = Field(
         default=None,
         description="The alias of the model to use for generating completions.",
     )
@@ -768,8 +768,8 @@ async def get_models(
         "object": "list",
         "data": [
             {
-                "id": settings.model_alias
-                if settings.model_alias is not None
+                "id": settings.alias
+                if settings.alias is not None
                 else llama.model_path,
                 "object": "model",
                 "owned_by": "me",
